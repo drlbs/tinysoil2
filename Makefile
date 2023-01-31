@@ -25,12 +25,16 @@ image_helper.o : image_helper.c
 wfETC.o : wfETC.c
 	$(CC) $(CFLAGS) -c wfETC.c
 
-lib: SOIL.o image_DXT.o image_helper.o stb_image_aug.o
+lib: SOIL.o image_DXT.o image_helper.o wfETC.o
 	ar -rc libSOIL2.a SOIL2.o image_DXT.o image_helper.o wfETC.o
 	ranlib libSOIL2.a
+	mkdir SOIL2
+	cp libSOIL2.a ./SOIL2/libsoil2.a
+	cp SOIL2.h ./SOIL2/soil2.h
 
 # Commands to clean up the directory
 
 clean:
 	rm *.o
 	rm *.a
+	rm -rf SOIL2
